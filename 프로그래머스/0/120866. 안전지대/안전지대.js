@@ -1,35 +1,29 @@
 function solution(board) {
     let n = board.length;
-    let count = 0;
-    let findDanger = Array.from({length: n},() => Array(n).fill(0));
-    let danger = [[-1, -1], [-1, 0], [-1, 1], 
-                  [0, -1], [0, 0], [0, 1], 
-                  [1, -1], [1, 0], [1, 1]];
-    
-    for(let x = 0; x < n; x++){
-        for(let y = 0; y < n; y++){
-            if(board[x][y] === 1){
-                danger.forEach(([dx, dy]) => {
-                    let dangerX = x + dx;
-                    let dangerY = y + dy;
-                    
-                    if(dangerX >= 0 && dangerX < n && dangerY >= 0 && dangerY < n){
-                        findDanger[dangerX][dangerY] = 1;
+    let dangerMap = [
+        [-1, -1],[0, -1],[1, -1],
+        [-1, 0], [0, 0], [1, 0],
+        [-1, 1], [0, 1], [1, 1]
+    ];
+    let danger = Array.from({length: n}, () => Array(n).fill(0));
+    let dangerCount = 0;
+
+    for (let y = 0; y < n; y++) {
+        for (let x = 0; x < n; x++) {
+            if (board[x][y] === 1) {
+                dangerMap.map(([danX, danY]) => {
+                    let newX = danX + x;
+                    let newY = danY + y;
+          
+                    if(newX >= 0 && newX < n && newY >= 0 && newY < n){
+                        if(danger[newX][newY] !== 1){
+                            danger[newX][newY] = 1;
+                            dangerCount++;
+                        }
                     }
                 })
             }
         }
     }
-    
-    for(let i = 0; i < n; i++){
-        for(let j = 0; j < n; j++){
-            if(findDanger[i][j] === 1){
-                count++;
-            }
-        }
-    }
-    
-    return (n * n) - count;
+    return n * n - dangerCount;
 }
-
-// 3,2 => 2,1
