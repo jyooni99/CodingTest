@@ -1,4 +1,5 @@
-function solution(arr)
-{
-    return arr.filter((val,index) => val != arr[index+1]);
+function solution(arr){
+    let answer = arr.filter((val, idx) => idx === 0 || arr[idx - 1] !== val)
+    
+    return answer;
 }
