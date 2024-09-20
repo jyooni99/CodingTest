@@ -1,6 +1,5 @@
 function solution(s){
     let stack = [];
-    let cnt = 0;
     
     for(let char of s){
         if(char === '('){
