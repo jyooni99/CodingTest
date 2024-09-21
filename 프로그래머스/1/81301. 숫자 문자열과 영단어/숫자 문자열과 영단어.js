@@ -1,20 +1,10 @@
 function solution(s) {
     let num = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-    let str = '';
-    let answer = '';
+    let str = s;
     
-    for(let char of s){
-        if(!isNaN(parseInt(char))){
-            answer += char;
-        }else{
-            str += char;
-            if(num.includes(str)){
-                answer += num.indexOf(str);
-                str = '';
-            }
-        }
-
+    for (let i = 0; i < 11; i++){
+        str = str.split(num[i]).join(i);
     }
     
-    return Number(answer);
+    return parseInt(str);
 }
