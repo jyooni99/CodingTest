@@ -6,8 +6,8 @@ function solution(n) {
     while(count-- > 1){
         let sum = i + j;
         i = j % 1234567;
-        j = sum;
+        j = sum % 1234567;
     }
     
-    return j % 1234567;
+    return j;
 }
