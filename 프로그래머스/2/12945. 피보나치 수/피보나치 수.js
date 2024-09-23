@@ -1,13 +1,13 @@
 function solution(n) {
-    let i = 0;
-    let j = 1;
+    let i = BigInt(0);
+    let j = BigInt(1);
     let count = n;
     
     while(count-- > 1){
         let sum = i + j;
-        i = j % 1234567;
-        j = sum % 1234567;
+        i = j;
+        j = sum;
     }
     
-    return j;
+    return j % BigInt(1234567);
 }
