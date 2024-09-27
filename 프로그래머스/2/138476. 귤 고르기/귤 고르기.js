@@ -1,17 +1,22 @@
 function solution(k, tangerine) {
-    let countTangerine = Array.from({length: Math.max(...tangerine) }).fill(0);
-    let sum = 0;
+    let tangerineObj = {};
+    let tangerineSum = 0;
+    let count = 0;
     
     tangerine.forEach(size => {
-        countTangerine[size - 1] = (countTangerine[size - 1] || 0 ) + 1;
+        tangerineObj[size] = (tangerineObj[size] || 0 ) + 1;
     });
     
-    return countTangerine.sort((a, b) => b - a).reduce((count, tanCount) => {
-        if(sum < k){
-            sum += tanCount;
-            return ++count;
-        }else{
-            return count;
-        }},0);
+    const tangerineArr = Object.values(tangerineObj).sort((a, b) => b - a);
     
+    for(let tan of tangerineArr){
+        if(tangerineSum < k){
+            tangerineSum += tan;
+            count++;
+        }else{
+            break;
+        }
+    }
+    
+    return count;
 }
