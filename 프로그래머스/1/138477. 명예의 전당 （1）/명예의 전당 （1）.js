@@ -3,16 +3,13 @@ function solution(k, score) {
     let lowerArr = [];
     
     for(let i = 0; i < score.length; i++){
+        rank.push(score[i]);
+        rank.sort((a, b) => b - a);
+        
         if(i < k){
-            rank.push(score[i]);
-            lowerArr.push(Math.min(...rank));
+            lowerArr.push(rank[rank.length - 1]);
         }else{
-            rank.sort((a, b) => b - a);
-            if(score[i] > rank[k - 1]){
-                rank.pop();
-                rank.push(score[i]);
-            }
-            lowerArr.push(Math.min(...rank));
+            lowerArr.push(rank[k - 1]);
         }
     }
     
