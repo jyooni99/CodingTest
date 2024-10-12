@@ -28,9 +28,9 @@ function solution(want, number, discount) {
             count++;
         }
         
+        // discount.length일 때는 discountMap을 추가 및 삭제하지 않고, 비교만 실행
         if(i < discount.length){
             discountMap.set(discount[i], (discountMap.get(discount[i]) || 0) + 1);
-            
             discountMap.set(discount[i - 10], (discountMap.get(discount[i - 10]) - 1));
 
             if(discountMap.get(discount[i - 10]) === 0){
