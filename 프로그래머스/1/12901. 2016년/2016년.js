@@ -1,6 +1,11 @@
 function solution(a, b) {
-    const day = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
-    const dayStr = new Date(`2016/${a}/${b}`);
+    const month = [31,29,31,30,31,30,31,31,30,31,30,31];
+    const day = ['THU','FRI','SAT','SUN','MON','TUE','WED'];
+    let days = b;
     
-    return day[dayStr.getDay()];
+    for(let i = 0; i < a - 1; i++){
+        days += month[i];
+    }
+    
+    return day[days % 7];
 }
