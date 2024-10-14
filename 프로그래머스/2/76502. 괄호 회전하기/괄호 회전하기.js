@@ -1,26 +1,26 @@
 function solution(s) {
     let strArr = s.split('');
-    let stack = [];
     let count = 0;
     
-    for(let i = 0; i < strArr.length; i++){
-        let correct = false;
-        for(let j = 0; j < strArr.length; j++){
-            if(strArr[j] === '[' || strArr[j] === '(' || strArr[j] === '{'){
-                stack.push(strArr[j]);
+    function isVaild(arr){
+        let stack = [];
+        for(let char of arr){
+            if(char === '[' || char === '(' || char === '{'){
+                stack.push(char);
             }else{
-                if((stack[stack.length - 1] === '[' && strArr[j] === ']')||
-                   (stack[stack.length - 1] === '(' && strArr[j] === ')')||
-                   (stack[stack.length - 1] === '{' && strArr[j] === '}')){
-                    correct = true;
-                    stack.pop();
-                }else{
-                    correct = false;
-                    break;
+                let last = stack.pop();
+                if(!((last === '[' && char === ']') ||
+                     (last === '(' && char === ')') ||
+                     (last === '{' && char === '}'))){
+                    return false;
                 }
             }
         }
-        if(stack.length === 0 && correct){
+        return stack.length === 0;
+    }
+    
+    for(let i = 0; i < strArr.length; i++){
+        if(isVaild(strArr)){
             count++;
         }
         strArr.push(strArr.shift());
