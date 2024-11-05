@@ -1,19 +1,21 @@
 function solution(N, stages) {
-    let challengers = Array(N + 2).fill(0);
+    let countObj = {};
     let failObj = {};
     let total = stages.length;
     
     for(let stage of stages){
-        challengers[stage] += 1;
+        countObj[stage] = (countObj[stage] || 0) + 1;
     }
     
-    for(let i = 1; i <= N; i++){
-        if(challengers[i] === 0){
-            failObj[i] = 0;
-            continue
+    for(let key = 1; key <= N; key++){
+        if(!countObj[key]){
+            failObj[key] = 0;
+        }else{
+            let fail = countObj[key];
+            failObj[key] = countObj[key] / total;
+            total -= fail;
         }
-        failObj[i] = challengers[i] / total;
-        total -= challengers[i];
+        
     }
     
     return Object.entries(failObj)
