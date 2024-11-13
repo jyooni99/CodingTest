@@ -7,9 +7,24 @@ function isPrime(n){
     return true;
 }
 
+function convertBase(num, base){
+    const baseArr = [];
+    let remainder;
+    
+    while(num >= base){
+        
+        remainder = num % base;
+        baseArr.push(remainder);
+        num = Math.floor(num / base);
+        
+    }
+    baseArr.push(num);
+    return baseArr.reverse().join('');
+}
+
 
 function solution(n, k) {
-    const primes = n.toString(k).split('0');
+    const primes = convertBase(n, k).split('0');
     let count = 0;
     
     console.log(primes);
