@@ -22,13 +22,7 @@ function solution(fees, records) {
         
         for(let j = 0; j < carFees[i].length; j += 2){
             let inTime = carFees[i][j];
-            let outTime; 
-            
-            if(!carFees[i][j + 1]){
-                outTime = "23:59"
-            }else{
-                outTime = carFees[i][j + 1]
-            }
+            let outTime = carFees[i][j + 1] || "23:59";
             
             const [hour1, minutes1] = inTime.split(':').map(Number);
             const [hour2, minutes2] = outTime.split(':').map(Number);
@@ -36,7 +30,7 @@ function solution(fees, records) {
             const time1 = hour1 * 60 + minutes1;
             const time2 = hour2 * 60 + minutes2;
             
-            time = time + time2 - time1;
+            time += time2 - time1;
         }
         
         if(time > baseTime){
