@@ -12,7 +12,8 @@ function solution(fees, records) {
     })
     
     // 차량 번호 순으로 정렬, 값들만 배열에 저장
-    const carFees = Object.entries(parkingLot).sort().map((list) => list[1]);
+    console.log(parkingLot);
+    const carFees = Object.keys(parkingLot).sort().map((key) => parkingLot[key]);
     
     // 시간 및 요금 계산
     for(let i = 0; i < carFees.length; i++){
