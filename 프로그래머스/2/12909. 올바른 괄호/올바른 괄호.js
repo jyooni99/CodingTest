@@ -1,14 +1,12 @@
 function solution(s){
-    let stack = [];
+    const stack = [];
     
-    for(let char of s){
-        if(char === '('){
-            stack.push(char);
+    for (const char of s){
+        if (char === '('){
+            stack.push(char)
         }else{
-            if(stack.length === 0){
-                return false;
-            }else{
-                stack.pop();
+            if (!stack.pop()){
+                return false
             }
         }
     }
