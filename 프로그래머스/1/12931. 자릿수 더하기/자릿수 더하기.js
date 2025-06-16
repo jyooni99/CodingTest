@@ -1,4 +1,10 @@
 function solution(n)
 {
-    return n.toString().split('').reduce((acc, v) => acc += parseInt(v), 0);
+    let answer = 0;
+    
+    n.toString().split('').reduce((acc, cur) => {
+        answer += Number(cur);
+    }, 0)
+
+    return answer;
 }
